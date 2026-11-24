@@ -64,3 +64,15 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
     if (e.key === 'ArrowRight') show(idx + 1);
   });
 })();
+
+// 문의 양식: 전송 주소가 아직 설정되지 않았으면 안내만 표시
+document.querySelectorAll('form.inquiry').forEach(f => {
+  f.addEventListener('submit', e => {
+    if (f.action.includes('YOUR_FORM_ID')) {
+      e.preventDefault();
+      const m = f.querySelector('.form-msg');
+      m.hidden = false;
+      m.textContent = '온라인 문의 접수는 준비 중입니다. 전시장(여주도자문화센터 2층)을 방문해 주세요.';
+    }
+  });
+});

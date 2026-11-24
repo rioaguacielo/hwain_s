@@ -132,3 +132,32 @@ form.inquiry textarea{min-height:140px;resize:vertical}
   .menu-btn{display:block}
   .ex-list{grid-template-columns:1fr}
 }
+
+/* ---- 제19회 실제 콘텐츠용 추가 스타일 ---- */
+.hero .visual{display:block;overflow:hidden;background:var(--paper-2)}
+.hero .visual img{transition:transform .8s}
+.hero .visual:hover img{transform:scale(1.03)}
+.ex-head .credits{margin-top:20px;font-size:13px;color:var(--ink-2)}
+.greeting{padding-bottom:40px}
+.statement p{margin-bottom:1.1em}
+.statement .sign{margin-top:28px;font-size:15px;color:var(--ink-2);font-family:var(--sans)}
+.gallery{padding-top:40px}
+.works{margin-top:40px}
+.artist{display:block}
+.artist .ph{overflow:hidden;background:var(--paper-2)}
+.artist .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.artist:hover .ph img{transform:scale(1.04)}
+.artist-grid{grid-template-columns:repeat(3,1fr)}
+.profiles-sec{background:var(--paper-2)}
+.profiles{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:40px}
+.profile{display:grid;grid-template-columns:120px 1fr;gap:24px;background:var(--paper);padding:24px;scroll-margin-top:90px}
+.profile img{width:120px;height:150px;object-fit:cover}
+.profile .ho{font-size:12px;letter-spacing:.1em;color:var(--celadon-d)}
+.profile h3{font-family:var(--serif);font-weight:500;font-size:22px;margin:2px 0 10px}
+.profile .cv{list-style:none;font-size:13.5px;color:var(--ink-2);line-height:1.8}
+.profile .cv li{padding-left:12px;position:relative}
+.profile .cv li::before{content:"";position:absolute;left:0;top:.85em;width:4px;height:1px;background:var(--ink-2)}
+.profile:target{outline:1px solid var(--celadon)}
+.form-msg{font-size:14px;color:var(--celadon-d)}
+@media (max-width:900px){.profiles{grid-template-columns:1fr}.artist-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.profile{grid-template-columns:88px 1fr;gap:16px;padding:18px}.profile img{width:88px;height:110px}}
