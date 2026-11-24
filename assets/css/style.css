@@ -161,3 +161,6 @@ form.inquiry textarea{min-height:140px;resize:vertical}
 .form-msg{font-size:14px;color:var(--celadon-d)}
 @media (max-width:900px){.profiles{grid-template-columns:1fr}.artist-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){.profile{grid-template-columns:88px 1fr;gap:16px;padding:18px}.profile img{width:88px;height:110px}}
+
+/* 스팸 방지용 숨김 칸 */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}

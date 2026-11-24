@@ -65,15 +65,16 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
   });
 })();
 
-// 문의 양식: Formspree로 전송하고 페이지 안에서 결과 표시
+// 문의 양식: 구글 Apps Script로 전송하고 페이지 안에서 결과 표시
 document.querySelectorAll('form.inquiry').forEach(f => {
   f.addEventListener('submit', async e => {
     e.preventDefault();
     const m = f.querySelector('.form-msg'), btn = f.querySelector('button[type=submit]');
     btn.disabled = true; btn.textContent = '보내는 중…';
     try {
-      const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
-      if (!r.ok) throw new Error();
+      const r = await fetch(f.action, { method: 'POST', body: new URLSearchParams(new FormData(f)) });
+      const d = await r.json();
+      if (!d.ok) throw new Error();
       f.reset();
       m.textContent = '문의가 접수되었습니다. 확인 후 연락드리겠습니다.';
     } catch {

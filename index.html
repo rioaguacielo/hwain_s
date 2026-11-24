@@ -117,9 +117,10 @@
         <dt>전시 기간</dt><dd>2026. 11. 25 (수) – 12. 15 (화)</dd>
       </dl>
     </div>
-    <!-- 문의 양식: Formspree (화인회 홈페이지 문의) -->
-    <form class="inquiry" action="https://formspree.io/f/mljbovdn" method="POST">
-      <input type="hidden" name="_subject" value="[화인회 홈페이지] 새 문의">
+    <!-- 문의 양식: 구글 Apps Script(홈페이지 문의 접수) → 시트 저장 + 메일 알림 -->
+    <form class="inquiry" action="https://script.google.com/macros/s/AKfycbzSGkYzuGvQp_G6xVHZZHuydilduFrVXoZ3H0_-JMAJZCFAsgzDZS4NiYXvOauJ6zCG/exec" method="POST">
+      <input type="hidden" name="site" value="여주도자기 화인회">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
       <label>성함<input name="name" required></label>
       <label>연락처 또는 이메일<input name="contact" required></label>
       <label>문의 종류
