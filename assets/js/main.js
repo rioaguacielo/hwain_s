@@ -65,14 +65,20 @@ document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date
   });
 })();
 
-// 문의 양식: 전송 주소가 아직 설정되지 않았으면 안내만 표시
+// 문의 양식: Formspree로 전송하고 페이지 안에서 결과 표시
 document.querySelectorAll('form.inquiry').forEach(f => {
-  f.addEventListener('submit', e => {
-    if (f.action.includes('YOUR_FORM_ID')) {
-      e.preventDefault();
-      const m = f.querySelector('.form-msg');
-      m.hidden = false;
-      m.textContent = '온라인 문의 접수는 준비 중입니다. 전시장(여주도자문화센터 2층)을 방문해 주세요.';
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    const m = f.querySelector('.form-msg'), btn = f.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = '보내는 중…';
+    try {
+      const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+      if (!r.ok) throw new Error();
+      f.reset();
+      m.textContent = '문의가 접수되었습니다. 확인 후 연락드리겠습니다.';
+    } catch {
+      m.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
     }
+    m.hidden = false; btn.disabled = false; btn.textContent = '문의 보내기';
   });
 });
