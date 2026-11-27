@@ -9,7 +9,7 @@ setv(document.querySelector('input[placeholder="포트폴리오 제목을 입력
 const src=await (await fetch(B+'step2.js')).text(); const AF=Object.getPrototypeOf(async function(){}).constructor;
 const r2=await new AF('D',src)(D);
 const t=document.body.innerText; const i=t.indexOf('미리보기'); const prev=t.slice(i,i+160).replace(/\n+/g,'|');
-if(!(r2[1]==='1'&&r2[2]==='1'&&r2[3]==='5'&&prev.includes(D.ind))) return {stop:true,r2,prev};
+const q=r2.slice(-4); if(!(q[0]==='1'&&q[1]==='1'&&q[2]==='5'&&prev.includes(D.ind))) return {stop:true,r2,prev};
 [...document.querySelectorAll('button')].filter(b=>b.innerText.trim()==='다음').pop().click(); await sleep(2500);
 const cards=[...document.querySelectorAll('button')].filter(b=>/원~/.test(b.innerText)); if(cards[0]){cards[0].click(); await sleep(600);}
 const cb=document.querySelector('input[type=checkbox]'); if(cb&&!cb.checked){cb.click(); await sleep(500);}
