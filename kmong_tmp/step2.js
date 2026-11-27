@@ -1,5 +1,6 @@
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const base='https://raw.githubusercontent.com/rioaguacielo/hwain_s/main/kmong_tmp/pf/';
+function press(el){for(const t of ['pointerdown','mousedown','pointerup','mouseup','click']) el.dispatchEvent(new MouseEvent(t,{bubbles:true,cancelable:true,view:window}));}
 const leaf=t=>[...document.querySelectorAll('body *')].filter(e=>e.innerText&&e.innerText.trim()===t&&e.offsetParent!==null);
 function setv(el,v){const proto=el.tagName==='TEXTAREA'?HTMLTextAreaElement.prototype:HTMLInputElement.prototype;Object.getOwnPropertyDescriptor(proto,'value').set.call(el,v);el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));}
 async function file(n){const r=await fetch(base+n); if(!r.ok) throw n+' '+r.status; return new File([await r.blob()],n,{type:'image/jpeg'});}
@@ -16,8 +17,8 @@ const fd=await file(D.id+'_detail.jpg');
 const inp=document.querySelector('input[type=file]'); const dt=new DataTransfer(); dt.items.add(fd); inp.files=dt.files; inp.dispatchEvent(new Event('change',{bubbles:true}));
 await sleep(4000);
 // industry
-leaf('업종을 선택해 주세요').pop().click(); await sleep(800);
-const op=[...document.querySelectorAll('[role=option]')].find(e=>e.innerText.trim()===D.ind); op.click(); await sleep(600);
+press(leaf('업종을 선택해 주세요').pop()); await sleep(800);
+const op=[...document.querySelectorAll('[role=option]')].find(e=>e.innerText.trim()===D.ind); press(op); await sleep(600);
 setv(document.querySelector('textarea'), D.desc);
 setv(document.querySelector('input[placeholder="고객사명을 입력해 주세요"]'), D.client);
 if(D.private){ const cb=[...document.querySelectorAll('input[type=checkbox]')].find(c=>{let p=c;for(let k=0;k<3;k++)p=p.parentElement;return p.innerText.includes('비공개')}); if(cb&&!cb.checked){cb.click(); log.push('private');} }
